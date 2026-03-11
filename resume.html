@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Donavan Aldrich — Resume</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fira+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+/* ── Reset ─────────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ── Design tokens ──────────────────────────────────────────────────────────── */
+:root {
+  /* Colors — exact LaTeX palette */
+  --header-bg:      #282828;        /* headerbarcolor  RGB 40,40,40   */
+  --accent:         #427B59;        /* cvItemColor     RGB 66,123,89  */
+  --accent-hover:   #52976e;        /* lighter for hover              */
+  --date-color:     #3d3c3a;        /* DateInfo        RGB 49,48,46   */
+  --section-text:   #414141;        /* darktext        HTML 414141    */
+  --tag-bg:         #427B59;        /* TagBackground   RGB 66,123,89  */
+  --tag-text:       #ffffff;
+  --icon-loc:       #e03328;        /* headerIcon1 — location (red)   */
+  --icon-tel:       #d49a10;        /* headerIcon2 — phone (yellow)   */
+  --icon-mail:      #427B59;        /* headerIcon3 — email (green)    */
+  --icon-in:        #458589;        /* headerIcon4 — linkedin (teal)  */
+
+  /* Layout */
+  --page-width: 960px;
+  --px: 44px;
+
+  /* Typography */
+  --sans: 'Fira Sans', 'Helvetica Neue', Arial, sans-serif;
+  --mono: 'Fira Code', 'Fira Mono', 'Consolas', monospace;
+}
+
+/* ── Base ───────────────────────────────────────────────────────────────────── */
+body {
+  font-family: var(--sans);
+  font-size: 11pt;
+  line-height: 1.55;
+  color: #2b2b2b;
+  background: #eeecea;
+}
+
+@media screen {
+  body { padding: 40px 16px 60px; }
+  .page {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    background: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 8px 32px rgba(0,0,0,.12);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+}
+
+@media print {
+  body { background: white; padding: 0; }
+  .page { max-width: none; box-shadow: none; }
+}
+
+/* ── Header ─────────────────────────────────────────────────────────────────── */
+.resume-header {
+  background: var(--header-bg);
+  color: #ffffff;
+  padding: 26px var(--px);
+}
+
+.header-name {
+  font-family: var(--sans);
+  font-size: 2.15rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  line-height: 1.1;
+  color: #ffffff;
+  margin-bottom: 13px;
+}
+
+.header-contact {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 28px;
+  row-gap: 7px;
+  align-items: center;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.84rem;
+  color: #cccccc;
+  white-space: nowrap;
+}
+
+/* Contact icon badges — terminal-style [loc] [tel] labels */
+.ci {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 2px 5px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+.ci-loc  { background: rgba(203,36,30,.28);  color: #f07068; }
+.ci-tel  { background: rgba(249,189,48,.25); color: #F9BD30; }
+.ci-mail { background: rgba(66,123,89,.30);  color: #6ac28a; }
+.ci-in   { background: rgba(69,133,137,.30); color: #5bbcc0; }
+
+.contact-item a { color: inherit; text-decoration: none; transition: color .15s; }
+.contact-item a:hover { color: #ffffff; }
+
+/* ── Body ───────────────────────────────────────────────────────────────────── */
+.resume-body {
+  padding: 26px var(--px) 36px;
+}
+
+/* ── Section ────────────────────────────────────────────────────────────────── */
+.resume-section { margin-bottom: 22px; }
+
+.section-heading {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--section-text);
+  margin-bottom: 5px;
+}
+
+.section-rule {
+  border: none;
+  border-top: 1px solid var(--accent);
+  margin: 0 0 15px;
+}
+
+/* ── Experience entries ──────────────────────────────────────────────────────── */
+.job-entry + .job-entry { margin-top: 16px; }
+
+.job-meta,
+.job-sub {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+}
+
+.job-meta { margin-bottom: 1px; }
+.job-sub  { margin-bottom: 6px; }
+
+.job-title {
+  font-size: 0.98rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.job-company {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #222222;
+}
+
+.job-date,
+.job-location {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--date-color);
+  white-space: nowrap;
+}
+
+/* ── Bullet list ─────────────────────────────────────────────────────────────── */
+.bullet-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bullet-list li {
+  font-size: 0.875rem;
+  line-height: 1.52;
+  padding-left: 1.2em;
+  position: relative;
+  margin-bottom: 3px;
+  color: #333333;
+}
+
+.bullet-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  top: 0.06em;
+  color: var(--accent);
+  font-size: 0.78em;
+}
+
+/* ── Education entries ───────────────────────────────────────────────────────── */
+.degree-entry + .degree-entry { margin-top: 10px; }
+
+.degree-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 2px 12px;
+  margin-bottom: 1px;
+}
+
+.degree-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.degree-date {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--date-color);
+}
+
+.degree-institution {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--section-text);
+}
+
+/* ── Certification entries ───────────────────────────────────────────────────── */
+.cert-entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-bottom: 9px;
+}
+
+.cert-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.cert-provider {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--date-color);
+}
+
+/* ── Skills grid ─────────────────────────────────────────────────────────────── */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 11px 22px;
+}
+
+.skill-category { break-inside: avoid; }
+
+.skill-cat-name {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--section-text);
+  margin-bottom: 5px;
+}
+
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+
+.skill-tag {
+  display: inline-block;
+  background: var(--tag-bg);
+  color: var(--tag-text);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 2px 6px 3px;
+  border-radius: 2px;
+  line-height: 1.5;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+@media screen {
+  .skill-tag:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+  }
+}
+
+/* ── Profile / project links ─────────────────────────────────────────────────── */
+.profile-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.profile-item {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.profile-label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent);
+  min-width: 180px;
+  flex-shrink: 0;
+}
+
+.profile-url {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--date-color);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.profile-url:hover { color: var(--accent); }
+
+/* ── Responsive ──────────────────────────────────────────────────────────────── */
+@media (max-width: 620px) {
+  :root { --px: 20px; }
+  .header-name { font-size: 1.55rem; }
+  .header-contact { column-gap: 14px; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .job-meta, .job-sub, .cert-entry, .degree-meta { flex-direction: column; }
+  .profile-item { flex-direction: column; gap: 1px; }
+}
+
+/* ── Print ───────────────────────────────────────────────────────────────────── */
+@media print {
+  :root { --px: 0.75in; }
+  body { font-size: 10pt; }
+
+  .resume-header {
+    background: var(--header-bg) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .skill-tag {
+    background: var(--tag-bg) !important;
+    color: var(--tag-text) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .ci {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .section-rule {
+    border-top-color: var(--accent) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .job-entry, .degree-entry, .cert-entry, .skill-category {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  a { color: inherit !important; text-decoration: none !important; }
+}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="resume-header">
+      <div class="header-name">Donavan Aldrich</div>
+      <div class="header-contact">
+    <span class="contact-item"><span class="ci ci-loc">loc</span>Dallas, TX</span>
+    <span class="contact-item"><span class="ci ci-tel">tel</span>(573) 239-5923</span>
+    <span class="contact-item"><span class="ci ci-mail">mail</span><a href="mailto:aldrich.don@gmail.com">aldrich.don@gmail.com</a></span>
+    <span class="contact-item"><span class="ci ci-in">in</span><a href="https://www.linkedin.com/in/don-aldrich-48a51815/" target="_blank" rel="noopener">don-aldrich-48a51815</a></span>
+      </div>
+    </header>
+    <div class="resume-body">
+  <section class="resume-section">
+    <h2 class="section-heading">Experience</h2>
+    <hr class="section-rule">
+    <div class="job-entry">
+      <div class="job-meta">
+        <span class="job-title">DevOps Engineer (Contract)</span>
+        <span class="job-date">Mar 2024 – Aug 2025</span>
+      </div>
+      <div class="job-sub">
+        <span class="job-company">Wells Fargo</span>
+        <span class="job-location">Irving, TX</span>
+      </div>
+      <ul class="bullet-list">
+        <li>Automated various manual processes (maintenance, upgrading, provisioning) for critical network security infrastructure (RSA/2FA)</li>
+        <li>Implemented observability metrics with Prometheus and Grafana, enabling real-time monitoring and alerting for production incidents</li>
+      </ul>
+    </div>
+    <div class="job-entry">
+      <div class="job-meta">
+        <span class="job-title">DevOps Engineer</span>
+        <span class="job-date">Mar 2018 – Mar 2024</span>
+      </div>
+      <div class="job-sub">
+        <span class="job-company">Digital River</span>
+        <span class="job-location">Dallas, TX</span>
+      </div>
+      <ul class="bullet-list">
+        <li>Deployed and maintained AWS infrastructure including compute (EC2, Lambda), storage (S3, EBS, EFS), databases (RDS, DynamoDB, Aurora), networking (VPC, Route 53, CloudFront, ELB), and governance (IAM, CloudWatch)</li>
+        <li>Engineered, implemented, and managed Kubernetes-based multi-node environments and scalable containerized application deployments using EKS, Helm charts, and ArgoCD</li>
+        <li>Automated infrastructure provisioning and configuration management using Terraform, Ansible, and Packer across multiple environments</li>
+        <li>Designed metric/logging collection, aggregation, and alerting solutions using Prometheus, Grafana, and InfluxDB</li>
+        <li>Built, managed, and optimized CI/CD pipelines using Gitlab-CI and GitHub Actions for continuous integration and automated testing</li>
+        <li>Automated system administration tasks including patching, performance tuning, and troubleshooting across all cloud-based Linux instances</li>
+        <li>Solid experience with Python scripting for process automation and serverless Lambda development</li>
+        <li>Optimized cost and performance through automation and tagging strategies</li>
+      </ul>
+    </div>
+    <div class="job-entry">
+      <div class="job-meta">
+        <span class="job-title">Data Scientist</span>
+        <span class="job-date">Apr 2014 – Feb 2018</span>
+      </div>
+      <div class="job-sub">
+        <span class="job-company">Elevate Finance</span>
+        <span class="job-location">Addison, TX</span>
+      </div>
+      <ul class="bullet-list">
+        <li>Collaborated with cross-functional teams to formulate and refine operational strategies using statistical analysis and machine learning algorithms</li>
+      </ul>
+    </div>
+    <div class="job-entry">
+      <div class="job-meta">
+        <span class="job-title">Statistician</span>
+        <span class="job-date">Jun 2011 – Apr 2014</span>
+      </div>
+      <div class="job-sub">
+        <span class="job-company">GM Financial</span>
+        <span class="job-location">Ft. Worth, TX</span>
+      </div>
+      <ul class="bullet-list">
+        <li>Constructed, validated, and implemented proprietary risk scorecards, back-end predictive models, risk management algorithms, and analytics tools</li>
+      </ul>
+    </div>
+    <div class="job-entry">
+      <div class="job-meta">
+        <span class="job-title">Research Specialist</span>
+        <span class="job-date">Jul 2006 – Aug 2009</span>
+      </div>
+      <div class="job-sub">
+        <span class="job-company">University of Missouri</span>
+        <span class="job-location">Columbia, MO</span>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section">
+    <h2 class="section-heading">Education</h2>
+    <hr class="section-rule">
+    <div class="degree-entry">
+      <div class="degree-meta">
+        <span class="degree-name">Master Of Business Administration (Mba)</span>
+        <span class="degree-date">Dec 2010</span>
+      </div>
+      <div class="degree-institution">University of Texas at Dallas</div>
+    </div>
+    <div class="degree-entry">
+      <div class="degree-meta">
+        <span class="degree-name">Bachelor Of Science In Biochemistry</span>
+        <span class="degree-date">May 2006</span>
+      </div>
+      <div class="degree-institution">University of Missouri</div>
+    </div>
+  </section>
+  <section class="resume-section">
+    <h2 class="section-heading">Certifications</h2>
+    <hr class="section-rule">
+    <div class="cert-entry">
+      <span class="cert-name">AWS Certified Solutions Architect – Associate</span>
+      <span class="cert-provider">Amazon Web Services</span>
+    </div>
+    <div class="cert-entry">
+      <span class="cert-name">HashiCorp Certified: Terraform Associate</span>
+      <span class="cert-provider">HashiCorp</span>
+    </div>
+  </section>
+  <section class="resume-section">
+    <h2 class="section-heading">Skills</h2>
+    <hr class="section-rule">
+    <div class="skills-grid">
+      <div class="skill-category">
+        <div class="skill-cat-name">AI &amp; LLMs</div>
+        <div class="skill-tags"><span class="skill-tag">OpenAI</span><span class="skill-tag">Claude</span><span class="skill-tag">LangChain</span><span class="skill-tag">LlamaIndex</span><span class="skill-tag">Ollama</span><span class="skill-tag">Hugging Face</span><span class="skill-tag">RAG</span><span class="skill-tag">Prompt Engineering</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">PyTorch</span><span class="skill-tag">MLflow</span></div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-name">API</div>
+        <div class="skill-tags"><span class="skill-tag">Kong</span><span class="skill-tag">Postman</span><span class="skill-tag">OpenAPI</span><span class="skill-tag">FastAPI</span><span class="skill-tag">Swagger</span></div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-name">AWS</div>
+        <div class="skill-tags"><span class="skill-tag">EC2</span><span class="skill-tag">Lambda</span><span class="skill-tag">RDS</span><span class="skill-tag">DynamoDB</span><span class="skill-tag">S3</span><span class="skill-tag">EBS</span><span class="skill-tag">EFS</span><span class="skill-tag">IAM</span><span class="skill-tag">EKS</span><span class="skill-tag">Aurora</span><span class="skill-tag">Route53</span><span class="skill-tag">VPC</span><span class="skill-tag">CloudFront</span><span class="skill-tag">ELB</span><span class="skill-tag">CloudWatch</span></div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-name">Automation &amp; CI/CD</div>
+        <div class="skill-tags"><span class="skill-tag">Drone</span><span class="skill-tag">AAP</span><span class="skill-tag">Gitlab</span><span class="skill-tag">Ansible</span><span class="skill-tag">GitLab-CI</span><span class="skill-tag">Github Actions</span></div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-name">Containers &amp; Virtualization</div>
+        <div class="skill-tags"><span class="skill-tag">Docker</span><span class="skill-tag">Kubernetes</span><span class="skill-tag">Helm</span><span class="skill-tag">BuildX</span><span class="skill-tag">ArgoCD</span><span class="skill-tag">Proxmox</span><span class="skill-tag">VMware</span><span class="skill-tag">Docker-Compose</span></div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-name">Database</div>
+        <div class="skill-tags"><span class="skill-tag">InfluxDB</span><span class="skill-tag">Postgres</span><span class="skill-tag">MySQL</span><span class="skill-tag">MariaDB</span><span class="skill-tag">Elasticsearch</span><span class="skill-tag">MongoDB</span></div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-name">HashiCorp</div>
+        <div class="skill-tags"><span class="skill-tag">Terraform</span><span class="skill-tag">Vault</span><span class="skill-tag">Consul</span><span class="skill-tag">Packer</span><span class="skill-tag">Vagrant</span></div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-name">Monitoring</div>
+        <div class="skill-tags"><span class="skill-tag">Kibana</span><span class="skill-tag">Netdata</span><span class="skill-tag">Logstash</span><span class="skill-tag">Filebeat</span><span class="skill-tag">Grafana</span><span class="skill-tag">Prometheus</span></div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-name">Network / Proxy</div>
+        <div class="skill-tags"><span class="skill-tag">OpenVPN</span><span class="skill-tag">Traefik</span><span class="skill-tag">Nginx</span><span class="skill-tag">WireGuard</span><span class="skill-tag">Unbound</span><span class="skill-tag">DNSmasq</span><span class="skill-tag">TLS/SSL</span><span class="skill-tag">Cloudflare</span><span class="skill-tag">Fail2ban</span></div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-name">Scripting</div>
+        <div class="skill-tags"><span class="skill-tag">BASH</span><span class="skill-tag">Python</span><span class="skill-tag">Linux</span></div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-name">Security</div>
+        <div class="skill-tags"><span class="skill-tag">RSA</span><span class="skill-tag">2FA</span><span class="skill-tag">PKI</span></div>
+      </div>
+      <div class="skill-category">
+        <div class="skill-cat-name">Data Science</div>
+        <div class="skill-tags"><span class="skill-tag">Machine Learning</span><span class="skill-tag">Statistical Analysis</span><span class="skill-tag">Predictive Modeling</span><span class="skill-tag">Risk Modeling</span></div>
+      </div>
+    </div>
+  </section>
+  <section class="resume-section">
+    <h2 class="section-heading">Projects &amp; Profiles</h2>
+    <hr class="section-rule">
+    <ul class="profile-list">
+      <li class="profile-item">
+        <span class="profile-label">DevOps Repos</span>
+        <a class="profile-url" href="https://resume.donavanaldrich.com/projects" target="_blank" rel="noopener">https://resume.donavanaldrich.com/projects</a>
+      </li>
+      <li class="profile-item">
+        <span class="profile-label">Homelab Status Page</span>
+        <a class="profile-url" href="https://uptime.donavanaldrich.com/status/public" target="_blank" rel="noopener">https://uptime.donavanaldrich.com/status/public</a>
+      </li>
+      <li class="profile-item">
+        <span class="profile-label">GitHub</span>
+        <a class="profile-url" href="https://github.com/donaldrich80" target="_blank" rel="noopener">https://github.com/donaldrich80</a>
+      </li>
+      <li class="profile-item">
+        <span class="profile-label">Docker Hub</span>
+        <a class="profile-url" href="https://hub.docker.com/u/donaldrich" target="_blank" rel="noopener">https://hub.docker.com/u/donaldrich</a>
+      </li>
+      <li class="profile-item">
+        <span class="profile-label">GitLab</span>
+        <a class="profile-url" href="https://gitlab.com/donaldrich" target="_blank" rel="noopener">https://gitlab.com/donaldrich</a>
+      </li>
+    </ul>
+  </section>
+    </div>
+  </div>
+</body>
+</html>
