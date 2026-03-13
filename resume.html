@@ -99,20 +99,16 @@ body {
 }
 
 /* Contact icon badges — terminal-style [loc] [tel] labels */
-.ci {
-  font-family: var(--mono);
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 2px 5px;
-  border-radius: 2px;
+.contact-icon {
+  font-size: 0.9rem;
+  width: 1em;
+  text-align: center;
   flex-shrink: 0;
 }
-.ci-loc  { background: rgba(203,36,30,.28);  color: #f07068; }
-.ci-tel  { background: rgba(249,189,48,.25); color: #F9BD30; }
-.ci-mail { background: rgba(66,123,89,.30);  color: #6ac28a; }
-.ci-in   { background: rgba(69,133,137,.30); color: #5bbcc0; }
+.ci-loc  { color: #f07068; }
+.ci-tel  { color: #F9BD30; }
+.ci-mail { color: #6ac28a; }
+.ci-in   { color: #5bbcc0; }
 
 .contact-item a { color: inherit; text-decoration: none; transition: color .15s; }
 .contact-item a:hover { color: #ffffff; }
@@ -394,10 +390,10 @@ body {
     <header class="resume-header">
       <div class="header-name">Donavan Aldrich</div>
       <div class="header-contact">
-    <span class="contact-item"><span class="ci ci-loc">loc</span>Dallas, TX</span>
-    <span class="contact-item"><span class="ci ci-tel">tel</span>(573) 239-5923</span>
-    <span class="contact-item"><span class="ci ci-mail">mail</span><a href="mailto:aldrich.don@gmail.com">aldrich.don@gmail.com</a></span>
-    <span class="contact-item"><span class="ci ci-in">in</span><a href="https://www.linkedin.com/in/donavan-aldrich/" target="_blank" rel="noopener">donavan-aldrich</a></span>
+    <span class="contact-item"><i class="fas fa-map-marker-alt contact-icon ci-loc"></i>Dallas, TX</span>
+    <span class="contact-item"><i class="fas fa-phone-square contact-icon ci-tel"></i>(573) 239-5923</span>
+    <span class="contact-item"><i class="fas fa-envelope contact-icon ci-mail"></i><a href="mailto:aldrich.don@gmail.com">aldrich.don@gmail.com</a></span>
+    <span class="contact-item"><i class="fab fa-linkedin contact-icon ci-in"></i><a href="https://www.linkedin.com/in/donavan-aldrich/" target="_blank" rel="noopener">donavan-aldrich</a></span>
       </div>
     </header>
     <div class="resume-body">
