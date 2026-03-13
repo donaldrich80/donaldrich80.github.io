@@ -123,6 +123,14 @@ body {
   margin-bottom: 28px;
 }
 
+/* Optional intro sentence (from URL params) */
+.letter-intro {
+  font-size: 1rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 1.3em;
+}
+
 /* Body paragraphs */
 .letter-body p {
   font-size: 1rem;
@@ -195,6 +203,29 @@ body {
   <script>
     document.getElementById('letter-date').textContent =
       new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+    const params = new URLSearchParams(window.location.search);
+    const company = params.get('company');
+    const title = params.get('title');
+
+    if (company || title) {
+      let sentence;
+      if (title && company) {
+        sentence = `I'm writing to express my interest in the ${title} position at ${company}.`;
+      } else if (title) {
+        sentence = `I'm writing to express my interest in the ${title} position.`;
+      } else {
+        sentence = `I'm writing to express my interest in a position at ${company}.`;
+      }
+
+      const intro = document.createElement('p');
+      intro.className = 'letter-intro';
+      intro.textContent = sentence;
+
+      const body = document.querySelector('.letter-body');
+      const firstPara = body.querySelector('p:not(#letter-date)');
+      body.insertBefore(intro, firstPara);
+    }
   </script>
 </body>
 </html>
