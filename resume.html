@@ -15,24 +15,13 @@ html { scroll-behavior: smooth; }
 
 /* ── Design tokens ──────────────────────────────────────────────────────────── */
 :root {
-  /* Colors — exact LaTeX palette */
-  --header-bg:      #282828;        /* headerbarcolor  RGB 40,40,40   */
-  --accent:         #427B59;        /* cvItemColor     RGB 66,123,89  */
-  --accent-hover:   #52976e;        /* lighter for hover              */
-  --date-color:     #3d3c3a;        /* DateInfo        RGB 49,48,46   */
-  --section-text:   #414141;        /* darktext        HTML 414141    */
-  --tag-bg:         #427B59;        /* TagBackground   RGB 66,123,89  */
-  --tag-text:       #ffffff;
-  --icon-loc:       #e03328;        /* headerIcon1 — location (red)   */
-  --icon-tel:       #d49a10;        /* headerIcon2 — phone (yellow)   */
-  --icon-mail:      #427B59;        /* headerIcon3 — email (green)    */
-  --icon-in:        #458589;        /* headerIcon4 — linkedin (teal)  */
-
-  /* Layout */
-  --page-width: 960px;
-  --px: 44px;
-
-  /* Typography */
+  --header-bg:    #282828;
+  --accent:       #427B59;
+  --accent-hover: #52976e;
+  --date-color:   #3d3c3a;
+  --section-text: #414141;
+  --page-width:   960px;
+  --px:           44px;
   --sans: 'Fira Sans', 'Helvetica Neue', Arial, sans-serif;
   --mono: 'Fira Code', 'Fira Mono', 'Consolas', monospace;
 }
@@ -64,11 +53,24 @@ body {
 }
 
 /* ── Header ─────────────────────────────────────────────────────────────────── */
-.resume-header {
+.page-header {
   background: var(--header-bg);
   color: #ffffff;
   padding: 26px var(--px);
+  position: relative;
 }
+
+.home-link {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+  transition: color .15s;
+}
+.home-link:hover { color: rgba(255,255,255,0.85); }
 
 .header-name {
   font-family: var(--sans);
@@ -98,7 +100,6 @@ body {
   white-space: nowrap;
 }
 
-/* Contact icon badges — terminal-style [loc] [tel] labels */
 .contact-icon {
   font-size: 0.9rem;
   width: 1em;
@@ -112,6 +113,29 @@ body {
 
 .contact-item a { color: inherit; text-decoration: none; transition: color .15s; }
 .contact-item a:hover { color: #ffffff; }
+
+/* ── Responsive ──────────────────────────────────────────────────────────────── */
+@media (max-width: 620px) {
+  :root { --px: 20px; }
+  .header-name { font-size: 1.55rem; }
+  .header-contact { column-gap: 14px; }
+}
+
+/* ── Print ───────────────────────────────────────────────────────────────────── */
+@media print {
+  .page-header {
+    background: var(--header-bg) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .home-link { display: none; }
+  a { color: inherit !important; text-decoration: none !important; }
+}
+/* ── Resume-specific tokens ──────────────────────────────────────────────────── */
+:root {
+  --tag-bg:   #427B59;
+  --tag-text: #ffffff;
+}
 
 /* ── Body ───────────────────────────────────────────────────────────────────── */
 .resume-body {
@@ -339,9 +363,6 @@ body {
 
 /* ── Responsive ──────────────────────────────────────────────────────────────── */
 @media (max-width: 620px) {
-  :root { --px: 20px; }
-  .header-name { font-size: 1.55rem; }
-  .header-contact { column-gap: 14px; }
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
   .job-meta, .job-sub, .cert-entry, .degree-meta { flex-direction: column; }
   .profile-item { flex-direction: column; gap: 1px; }
@@ -352,20 +373,9 @@ body {
   :root { --px: 0.75in; }
   body { font-size: 10pt; }
 
-  .resume-header {
-    background: var(--header-bg) !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
   .skill-tag {
     background: var(--tag-bg) !important;
     color: var(--tag-text) !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-
-  .ci {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
@@ -380,14 +390,13 @@ body {
     page-break-inside: avoid;
     break-inside: avoid;
   }
-
-  a { color: inherit !important; text-decoration: none !important; }
 }
   </style>
 </head>
 <body>
   <div class="page">
-    <header class="resume-header">
+    <header class="page-header">
+      <a class="home-link" href="index.html">← Home</a>
       <div class="header-name">Donavan Aldrich</div>
       <div class="header-contact">
     <span class="contact-item"><i class="fas fa-map-marker-alt contact-icon ci-loc"></i>Dallas, TX</span>

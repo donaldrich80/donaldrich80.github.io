@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Donavan Aldrich — Cover Letter</title>
+  <title>Donavan Aldrich — Projects</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Fira+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
@@ -131,57 +131,138 @@ body {
   .home-link { display: none; }
   a { color: inherit !important; text-decoration: none !important; }
 }
-/* ── Letter body ────────────────────────────────────────────────────────────── */
-.letter-body {
-  padding: 44px var(--px) 56px;
+.projects-body {
+  padding: 36px var(--px) 56px;
 }
 
-/* Date line */
-.letter-date {
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--date-color);
-  margin-bottom: 28px;
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
-/* Optional intro sentence (from URL params) */
-.letter-intro {
-  font-size: 1rem;
+.project-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: border-color .2s, box-shadow .2s;
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 12px rgba(66,123,89,.12);
+}
+
+.project-card.featured {
+  border-color: var(--accent);
+  border-width: 2px;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
   color: var(--accent);
+  text-decoration: none;
+}
+
+.card-title:hover { color: var(--accent-hover); }
+
+.card-kind-icon { font-size: 0.9rem; }
+
+.card-stars {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--date-color);
+  white-space: nowrap;
+}
+
+.card-desc {
+  font-size: 0.875rem;
+  color: #444;
+  line-height: 1.55;
+  flex: 1;
+}
+
+.card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.card-lang {
+  font-family: var(--mono);
+  font-size: 0.65rem;
   font-weight: 600;
-  margin-bottom: 1.3em;
+  color: var(--section-text);
+  background: #f0f0f0;
+  padding: 2px 6px;
+  border-radius: 2px;
 }
 
-/* Body paragraphs */
-.letter-body p {
-  font-size: 1rem;
-  line-height: 1.75;
-  color: #333333;
-  margin-bottom: 1.3em;
+.card-topic {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  background: var(--accent);
+  color: #fff;
+  padding: 2px 5px;
+  border-radius: 2px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
-/* Inline emphasis */
-.letter-body em  { font-style: italic; color: #444; }
-.letter-body strong { font-weight: 700; color: #1a1a1a; }
-
-/* Signature block */
-.letter-body p:last-child {
-  margin-top: 2em;
-  margin-bottom: 0;
-  font-size: 1rem;
-  color: #333333;
+.card-push {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--date-color);
+  margin-left: auto;
 }
 
-/* ── Print ───────────────────────────────────────────────────────────────────── */
-@media print {
-  :root { --px: 0.75in; }
-  body { font-size: 10.5pt; }
+.card-links {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+.card-link {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--accent);
+  text-decoration: none;
+  transition: color .15s;
+}
+
+.card-link:hover { color: var(--accent-hover); }
+
+.card-domain {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: var(--date-color);
+}
+
+@media (max-width: 700px) {
+  .projects-grid { grid-template-columns: 1fr; }
 }
   </style>
 </head>
 <body>
   <div class="page">
     <header class="page-header">
+      <a class="home-link" href="index.html">← Home</a>
       <div class="header-name">Donavan Aldrich</div>
       <div class="header-contact">
     <span class="contact-item"><i class="fas fa-map-marker-alt contact-icon ci-loc"></i>Dallas, TX</span>
@@ -190,44 +271,28 @@ body {
     <span class="contact-item"><i class="fab fa-linkedin contact-icon ci-in"></i><a href="https://www.linkedin.com/in/donavan-aldrich/" target="_blank" rel="noopener">donavan-aldrich</a></span>
       </div>
     </header>
-    <div class="letter-body">
-<p class="letter-date" id="letter-date"></p>
-<p>My background is a bit of an odd mix, and I think that&rsquo;s worth explaining upfront.</p>
-<p>I spent the first chunk of my career doing data and statistics work. I built risk models and credit scorecards at GM Financial, then moved into data science at Elevate Finance where I worked on machine learning and operational strategy. I liked the work, but what I kept finding myself doing in my off hours was something different entirely. I was running servers at home, wiring together self-hosted services, figuring out how to make things scale and talk to each other. The homelab started as a hobby and turned into an education. Eventually it became my career.</p>
-<p>The shift to DevOps made sense to me because a lot of the same thinking applies. When I set up monitoring at Wells Fargo for their RSA authentication infrastructure, I approached it the same way I used to approach a modeling problem: what are the signals that actually matter, and how do you build something that tells you about a problem before it becomes a crisis? The statistics background has been genuinely useful in ways I didn&rsquo;t expect.</p>
-<p>At Digital River I spent six years building and maintaining infrastructure on AWS, running Kubernetes clusters, writing Terraform and Ansible to keep things consistent across environments, and building out CI/CD pipelines. I enjoy that kind of work. There&rsquo;s something satisfying about taking a messy manual process and automating it cleanly, or figuring out why a system is behaving in a way it shouldn&rsquo;t.</p>
-<p>I like building things that work well and that other people can actually use. That&rsquo;s true whether it&rsquo;s a monitoring dashboard, a deployment pipeline, or something running on my homelab on a Saturday afternoon.</p>
-<p>If you&rsquo;d like to talk more about my background or have any questions, please don&rsquo;t hesitate to reach out. I&rsquo;m happy to get into specifics on anything.</p>
-<p>You can also find a selection of my projects and public work at <a href="https://donaldrich80.github.io/projects.html">donaldrich80.github.io/projects.html</a>.</p>
-<p>Donavan Aldrich</p>
+    <div class="projects-body">
+      <div class="projects-grid">
+<div class="project-card featured">
+  <div class="card-header">
+    <a class="card-title" href="https://github.com/donaldrich80/resume" target="_blank" rel="noopener"><i class="fab fa-github card-kind-icon"></i> https://github.com/donaldrich80/resume</a>
+    
+  </div>
+  <div class="card-desc">Source for this portfolio site — YAML-driven resume and cover letter pipeline</div>
+  
+  <div class="card-links"><a class="card-link" href="https://github.com/donaldrich80/resume" target="_blank" rel="noopener">View ↗</a></div>
+</div>
+<div class="project-card">
+  <div class="card-header">
+    <a class="card-title" href="https://github.com/donaldrich80" target="_blank" rel="noopener"><i class="fab fa-github card-kind-icon"></i> GitHub Profile</a>
+    
+  </div>
+  <div class="card-desc">All public repos</div>
+  
+  <div class="card-links"><a class="card-link" href="https://github.com/donaldrich80" target="_blank" rel="noopener">View ↗</a></div>
+</div>
+      </div>
     </div>
-  <script>
-    document.getElementById('letter-date').textContent =
-      new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
-
-    const params = new URLSearchParams(window.location.search);
-    const company = params.get('company');
-    const title = params.get('title');
-
-    if (company || title) {
-      let sentence;
-      if (title && company) {
-        sentence = `I'm writing to express my interest in the ${title} position at ${company}.`;
-      } else if (title) {
-        sentence = `I'm writing to express my interest in the ${title} position.`;
-      } else {
-        sentence = `I'm writing to express my interest in a position at ${company}.`;
-      }
-
-      const intro = document.createElement('p');
-      intro.className = 'letter-intro';
-      intro.textContent = sentence;
-
-      const body = document.querySelector('.letter-body');
-      const firstPara = body.querySelector('p:not(#letter-date)');
-      body.insertBefore(intro, firstPara);
-    }
-  </script>
   </div>
 </body>
 </html>
